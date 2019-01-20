@@ -1,0 +1,35 @@
+{
+  "name": "direction",
+  "version": "0.0.1",
+  "description": "This is a node based router",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "serverTest": "mocha test/serverTest.js",
+    "testDev": "nodemon --watch . --exec 'mocha test/serverTest.js || true'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amanej/Direction.git"
+  },
+  "keywords": [
+    "router",
+    "node",
+    "url",
+    "router"
+  ],
+  "author": "Aman Mender",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Amanej/Direction/issues"
+  },
+  "homepage": "https://github.com/Amanej/Direction#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  }
+}
