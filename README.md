@@ -21,6 +21,13 @@
     ]
 ```
 
+Routes are expected to be:
+```
+    name - Route - String
+    method - HTTP Method - String
+    handler - Response function - Function
+```
+
 * Init Router
 
 ```
