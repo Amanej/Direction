@@ -4,11 +4,41 @@
 
 > An node based router - in progress
 
+## Usage
+
+* Define routes
+
+```
+    DirectionRoutes = [
+        {
+            name: "god-dag",
+            method: "GET",
+            handler: (req,res) => {
+                let message = JSON.stringify({"message":"Hei, ha en god dag!"});
+                res.end(message);
+            }
+        },
+    ]
+```
+
+* Init Router
+
+```
+    const DirectionRouter = new Direction(DirectionRoutes);
+```
+
+* Pass to server
+
+```
+    const server = http.createServer((req,res) => {
+        DirectionRouter.handleRequests(req,res)
+    });    
+```
+
 ## Features
 
 * Basic json routes
 * Serve static files
-
 
 ## Todo
 
