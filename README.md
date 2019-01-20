@@ -1,6 +1,8 @@
 # Direction
 
-An node based router - in progress
+[![Build Status](https://travis-ci.org/Amanej/Direction.svg?branch=master)](https://travis-ci.org/Amanej/Direction)
+
+> An node based router - in progress
 
 ## Features
 
