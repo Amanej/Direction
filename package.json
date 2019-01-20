@@ -9,8 +9,8 @@
   },
   "scripts": {
     "test": "mocha",
-    "serverTest": "mocha",
-    "testDev": "nodemon --watch . --exec 'mocha || true'"
+    "testDev": "nodemon --watch . --exec 'mocha || true'",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -29,7 +29,10 @@
   },
   "homepage": "https://github.com/Amanej/Direction#readme",
   "devDependencies": {
+    "babel-minify-webpack-plugin": "^0.3.1",
     "chai": "^4.2.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1"
   }
 }
