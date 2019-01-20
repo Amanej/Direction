@@ -60,7 +60,7 @@ let DirectionRoutes = [
 
 const DirectionRouter = new Direction(DirectionRoutes);
 
-const server  = http.createServer((req,res) => {
+const server = http.createServer((req,res) => {
     DirectionRouter.handleRequests(req,res)
 });
 
@@ -83,6 +83,8 @@ describe('Basic json request', function() {
             sendRequest("http://localhost:2024/hello",function(e,r) {
                 assert.equal(r.statusCode, 200);
                 assert.equal(r.data.message, "Hello, dude. You are great!");
+                // Final server
+                server.close();
             })
         })
     });
