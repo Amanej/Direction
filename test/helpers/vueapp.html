@@ -1,9 +1,49 @@
 <html>
     <head>
         <title>Vue app</title>
-        <script></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
     </head>
     <body>
-
+        <div id="body">
+            <ul>
+                <li v-for="player in list" :key="player.name">
+                    <p>{{player.name}}  -  {{player.score}}</p>
+                    <button @click="addScore(player.name)">+</button><button @click="decreaseScore(player.name)">-</button>
+                </li>
+            </ul>
+        </div>
     </body>
+    <script>
+            var app = new Vue({
+                el: "#body",
+                data: {
+                    list: [
+                        {
+                            name: "Aman",
+                            score: 24000
+                        },
+                        {
+                            name: "Abraham",
+                            score: 18000
+                        },
+                        {
+                            name: "Zenia",
+                            score: 12000
+                        }
+                    ]
+                },
+                methods: {
+                    addScore(name) {
+                        //console.log(this);
+                        const i = this.list.findIndex(p => p.name === name);
+                        this.list[i].score++
+                    },
+                    decreaseScore(name) {
+                        //console.log(this);
+                        const i = this.list.findIndex(p => p.name === name);
+                        this.list[i].score--
+                    }
+                }
+            })
+    </script>
 </html>

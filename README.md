@@ -58,6 +58,7 @@ Routes are expected to be:
 ## Todo
 
 * Process post request
+* Handle file uploads
 
 ### Battle test
 

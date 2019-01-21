@@ -49,6 +49,14 @@ let DirectionRoutes = [
             let file = fs.readFileSync("./test/helpers/bootstrap.html","utf-8");
             res.end(file);
         }
+    },
+    {
+        name: "vueapp",
+        method: "GET",
+        handler: (req,res) => {
+            let file = fs.readFileSync("./test/helpers/vueapp.html","utf-8");
+            res.end(file);
+        }
     }
 ]
 
@@ -106,8 +114,21 @@ describe('Basic html request', function() {
             sendRequest("http://localhost:2024/bootstrap",'html','utf-8',function(e,r) {
                 let _htmlFile = fs.readFileSync("./test/helpers/bootstrap.html","utf-8")
                 assert.equal(r.data, _htmlFile);
+            });            
+        });
+    });
+    describe('Test bootstrap Vue app file', function() {
+        it('correct statusCode and data', function() {
+            sendRequest("http://localhost:2024/vueapp",'html','utf-8',function(e,r) {
+                assert.equal(r.statusCode, 200);
+            });            
+        });
+        it('correct file data', function() {
+            sendRequest("http://localhost:2024/vueapp",'html','utf-8',function(e,r) {
+                let _htmlFile = fs.readFileSync("./test/helpers/vueapp.html","utf-8")
+                assert.equal(r.data, _htmlFile);
                 // Final call
-                server.close();
+                //server.close();
             });            
         });
     });
