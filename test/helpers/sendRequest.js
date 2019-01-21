@@ -1,7 +1,6 @@
 const http = require('http');
 
 sendRequest = (url,type,encoding,cb) => {
-    //const type = type;
     return http.get(url || "http://localhost:2024/god-dag",(res) => {
         const { statusCode } = res;
         res.setEncoding(encoding || 'utf8');
@@ -9,8 +8,6 @@ sendRequest = (url,type,encoding,cb) => {
         res.on('data', (chunk) => { rawData += chunk; });
         res.on('end', () => {
           try {
-            //let type = type || 'json';
-
             let parsedData;
             
             switch(type) {

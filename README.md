@@ -18,6 +18,14 @@
                 res.end(message);
             }
         },
+        {
+            name: "bootstrap",
+            method: "GET",
+            handler: (req,res) => {
+                let file = fs.readFileSync("./test/helpers/bootstrap.html","utf-8");
+                res.end(file);
+            }
+        }
     ]
 ```
 
@@ -45,7 +53,7 @@ Routes are expected to be:
 ## Features
 
 * Basic json routes
-* Serve static files
+* Serve HTML
 
 ## Todo
 
