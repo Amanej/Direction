@@ -128,7 +128,7 @@ describe('Basic html request', function() {
                 let _htmlFile = fs.readFileSync("./test/helpers/vueapp.html","utf-8")
                 assert.equal(r.data, _htmlFile);
                 // Final call
-                //server.close();
+                server.close();
             });            
         });
     });
