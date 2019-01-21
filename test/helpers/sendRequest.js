@@ -1,16 +1,27 @@
 const http = require('http');
 
-sendRequest = (url,cb) => {
+sendRequest = (url,type,encoding,cb) => {
+    //const type = type;
     return http.get(url || "http://localhost:2024/god-dag",(res) => {
         const { statusCode } = res;
-        res.setEncoding('utf8');
+        res.setEncoding(encoding || 'utf8');
         let rawData = '';
         res.on('data', (chunk) => { rawData += chunk; });
         res.on('end', () => {
           try {
-            //console.log(rawData);
-            const parsedData = JSON.parse(rawData);
-            //console.log(parsedData, parsedData.message);
+            //let type = type || 'json';
+
+            let parsedData;
+            
+            switch(type) {
+                case 'json':
+                        parsedData = JSON.parse(rawData);
+                    break;
+                case 'html':
+                        parsedData = rawData;
+                    break;                    
+            }
+            
             cb(null,{
                 data: parsedData,
                 statusCode: statusCode

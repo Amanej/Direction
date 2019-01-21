@@ -42,7 +42,7 @@ let DirectionRoutes = [
         method: "GET",
         handler: (req,res) => {
             let file = fs.readFileSync("./test/helpers/website.html","utf-8");
-            console.log(typeof file,file);
+            //console.log(typeof file,file);
             //let body = "<html><h2>Hello</h2></html>"
             //res.setHeader()
             res.end(file);
@@ -72,7 +72,7 @@ server.listen(port,function() {
 describe('Basic json request', function() {
     describe('Test first endpoint', function() {
         it('correct statusCode and json', function() {
-            sendRequest("http://localhost:2024/god-dag",function(e,r) {
+            sendRequest("http://localhost:2024/god-dag",'json','utf-8',function(e,r) {
                 assert.equal(r.statusCode, 200);
                 assert.equal(r.data.message, "Hei, ha en god dag!");
             });
@@ -80,7 +80,7 @@ describe('Basic json request', function() {
     })
     describe('Test second endpoint', function() {
         it('correct statusCode and json', function() {
-            sendRequest("http://localhost:2024/hello",function(e,r) {
+            sendRequest("http://localhost:2024/hello",'json','utf-8',function(e,r) {
                 assert.equal(r.statusCode, 200);
                 assert.equal(r.data.message, "Hello, dude. You are great!");
                 // Final server
@@ -90,4 +90,24 @@ describe('Basic json request', function() {
     });
 })
 
-//describe('Basic html request', function() {});
+describe('Basic html request', function() {
+    describe('Test hellow world HTML file', function() {
+        it('correct statusCode and data', function() {
+            sendRequest("http://localhost:2024/website",'html','utf-8',function(e,r) {
+                console.log("r ",r);
+                assert.equal(r.statusCode, 200);
+                assert.equal(r.data, "<html><h2>Hello</h2></html>");
+            });
+        })
+    })
+    describe('Test bootstrap HTML file', function() {
+        it('correct statusCode and data', function() {
+            sendRequest("http://localhost:2024/bootstrap",'html','utf-8',function(e,r) {
+                console.log("r ",r);
+                assert.equal(r.statusCode, 200);
+                let f = fs.readFileSync("./test/helpers/website.html","utf-8")
+                assert.equal(r.data, f);
+            });            
+        });
+    });
+});
