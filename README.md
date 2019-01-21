@@ -58,7 +58,10 @@ Routes are expected to be:
 ## Todo
 
 * Process post request
+* Let user define route by name and method
 * Handle file uploads
+* Pass headers to route function
+* Handle parameters well
 
 ### Battle test
 
