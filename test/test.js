@@ -6,7 +6,11 @@ const fs = require('fs');
 const http = require('http');
 const Direction = require('../lib/index.js');
 
-const {sendRequest,promiseRequest} = require('./helpers/sendRequest');
+// advanced routes
+const advancedRoutes = require('../test/helpers/advancedRouting');
+//console.log("advancedRoutes ",advancedRoutes);
+
+const {sendRequest,promiseRequest} = require('../test/helpers/sendRequest');
 
 let DirectionRoutes = [
     {
@@ -56,6 +60,21 @@ let DirectionRoutes = [
         handler: (req,res) => {
             let file = fs.readFileSync("./test/helpers/vueapp.html","utf-8");
             res.end(file);
+        }
+    },
+    {
+        name: "currencyrates",
+        method: "GET",
+        handler: (req,res) => {
+            advancedRoutes.fetchDataExternalSource(function(e,r) {
+                if(e) {
+                    res.writeHead(500);
+                } else {
+                    //console.log(typeof r);
+                    res.end(r.data);
+                }
+            });
+            //res.end("Hello");
         }
     }
 ]
@@ -128,8 +147,27 @@ describe('Basic html request', function() {
                 let _htmlFile = fs.readFileSync("./test/helpers/vueapp.html","utf-8")
                 assert.equal(r.data, _htmlFile);
                 // Final call
-                server.close();
+                //server.close();
             });            
         });
     });
+});
+
+describe('Basic html request', function() {
+    describe('Test bootstrap Vue app file', function() {
+        it('correct statusCode and data', function() {
+            sendRequest("http://localhost:2024/currencyrates",'html','utf-8',function(e,r) {
+                assert.equal(r.statusCode, 200);
+            });            
+        });
+        it('correct file data', function() {
+            sendRequest("http://localhost:2024/currencyrates",'html','utf-8',function(e,r) {
+                //let _htmlFile = fs.readFileSync("./test/helpers/vueapp.html","utf-8")
+                //assert.equal(r.data, _htmlFile);
+                console.log(r.data)
+                // Final call
+                //server.close();
+            });            
+        });
+    });    
 });

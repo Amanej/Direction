@@ -59,13 +59,15 @@ Routes are expected to be:
 
 ## Todo
 
+* ~~Serve HTML~~
 * Process post request
 * Let user define route by name and method
 * Handle file uploads
 * Pass headers to route function
 * Handle parameters well
+* Serve static files folder
 
 ### Battle test
 
-* Build basic homepage with router
-* Build webapp with router
+* ~~Build basic homepage with router~~
+* ~~Build webapp with router~~
