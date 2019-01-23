@@ -10,7 +10,8 @@
   "scripts": {
     "test": "mocha",
     "testDev": "nodemon --watch . --exec 'mocha || true'",
-    "build": "webpack"
+    "build": "webpack",
+    "runDemo": "node demo/index.js"
   },
   "repository": {
     "type": "git",
@@ -34,5 +35,8 @@
     "mocha": "^5.2.0",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1"
+  },
+  "dependencies": {
+    "xml2js": "^0.4.19"
   }
 }

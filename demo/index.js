@@ -2,6 +2,8 @@ const fs = require('fs');
 const http = require('http');
 const Direction = require('../lib/index.js');
 
+const advancedRoutes = require('./advancedRoutes.js');
+
 let DirectionRoutes = [
     {
         name: "god-dag",
@@ -50,6 +52,20 @@ let DirectionRoutes = [
         handler: (req,res) => {
             let file = fs.readFileSync("./demo/html/vueapp.html","utf-8");
             res.end(file);
+        }
+    },
+    {
+        name: "currencyrates",
+        method: "GET",
+        handler: (req,res) => {
+            advancedRoutes.fetchDataExternalSource(function(e,r) {
+                if(e) {
+                    res.writeHead(500);
+                } else {
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(r.data);
+                }
+            });
         }
     },
     {
