@@ -1,6 +1,7 @@
 const https = require('https');
 // XML2JSON
 const xml2js = require('xml2js');
+const fs = require('fs');
 
 const parseRates = require('./dataParse/parseRates.js')
 
@@ -41,6 +42,19 @@ const extensiveRoutes = {
     },
     fetchDataDatabase: function() {
 
+    },
+    // Inspiration - https://gist.github.com/amejiarosario/53afae82e18db30dadc9bc39035778e5
+    serveStaticFile: function(cb) {
+        fs.readFile('./demo/static/mark-github.svg',(err,data) => {
+            if(err) {
+                cb(err,null);
+            } else {
+                cb(null,{
+                    data: data,
+                    statusCode: 200
+                })
+            }
+        })
     }
 }
 

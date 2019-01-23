@@ -69,6 +69,22 @@ let DirectionRoutes = [
         }
     },
     {
+        name: "githubIcon.svg",
+        method: "GET",
+        handler: (req,res) => {
+            advancedRoutes.serveStaticFile(function(e,r) {
+                if(e) {
+                    console.error(e);
+                    res.writeHead(500);
+                } else {
+                    res.setHeader('Content-Type', 'image/svg+xml');
+                    console.log(r.data)
+                    res.end(r.data);
+                }
+            });
+        }
+    },
+    {
         name: "",
         method: "GET",
         handler: (req,res) => {
