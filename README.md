@@ -66,6 +66,7 @@ Routes are expected to be:
 * Handle file uploads
 * Pass headers to route function
 * Handle parameters well
+* ~~Serve static file~~
 * Serve static files folder
 
 ### Battle test
