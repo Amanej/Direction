@@ -60,6 +60,7 @@ Routes are expected to be:
 ## Todo
 
 * ~~Serve HTML~~
+* ~~Request flow works with external data sources~~
 * Process post request
 * Let user define route by name and method
 * Handle file uploads
