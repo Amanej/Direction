@@ -162,11 +162,12 @@ describe('Basic html request', function() {
         });
         it('correct file data', function() {
             sendRequest("http://localhost:2024/currencyrates",'html','utf-8',function(e,r) {
+                console.log(r.data)
+                let responseData = r.data;
                 //let _htmlFile = fs.readFileSync("./test/helpers/vueapp.html","utf-8")
                 //assert.equal(r.data, _htmlFile);
-                console.log(r.data)
                 // Final call
-                //server.close();
+                server.close();
             });            
         });
     });    
