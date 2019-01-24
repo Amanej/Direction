@@ -61,13 +61,13 @@ Routes are expected to be:
 
 * ~~Serve HTML~~
 * ~~Request flow works with external data sources~~
+* ~~Serve static file~~
+* Serve static files folder
 * Process post request
 * Let user define route by name and method
 * Handle file uploads
 * Pass headers to route function
 * Handle parameters well
-* ~~Serve static file~~
-* Serve static files folder
 
 ### Battle test
 
