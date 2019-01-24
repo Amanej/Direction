@@ -80,6 +80,7 @@ let DirectionRoutes = [
 ]
 
 const DirectionRouter = new Direction(DirectionRoutes);
+DirectionRouter.setStaticFolder('test/static');
 
 const server = http.createServer((req,res) => {
     DirectionRouter.handleRequests(req,res)
@@ -162,12 +163,12 @@ describe('Basic html request', function() {
         });
         it('correct file data', function() {
             sendRequest("http://localhost:2024/currencyrates",'html','utf-8',function(e,r) {
-                console.log(r.data)
+                //console.log(r.data)
                 let responseData = r.data;
                 //let _htmlFile = fs.readFileSync("./test/helpers/vueapp.html","utf-8")
                 //assert.equal(r.data, _htmlFile);
                 // Final call
-                server.close();
+                //server.close();
             });            
         });
     });    
