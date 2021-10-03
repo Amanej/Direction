@@ -80,6 +80,7 @@ let DirectionRoutes = [
 ]
 
 const DirectionRouter = new Direction(DirectionRoutes);
+DirectionRouter.setStaticFolder('test/static');
 
 const server = http.createServer((req,res) => {
     DirectionRouter.handleRequests(req,res)
@@ -156,16 +157,15 @@ describe('Basic html request', function() {
 describe('Basic html request', function() {
     describe('Test bootstrap Vue app file', function() {
         it('correct statusCode and data', function() {
-            sendRequest("http://localhost:2024/currencyrates",'html','utf-8',function(e,r) {
+            sendRequest("http://localhost:2024/static/mark-github.svg",'html','utf-8',function(e,r) {
                 assert.equal(r.statusCode, 200);
             });            
         });
         it('correct file data', function() {
-            sendRequest("http://localhost:2024/currencyrates",'html','utf-8',function(e,r) {
-                console.log(r.data)
+            sendRequest("http://localhost:2024/static/mark-github.svg",'html','utf-8',function(e,r) {
                 let responseData = r.data;
-                //let _htmlFile = fs.readFileSync("./test/helpers/vueapp.html","utf-8")
-                //assert.equal(r.data, _htmlFile);
+                let _staticFile = fs.readFileSync("./test/static/mark-github.svg","utf-8")
+                assert.equal(responseData, _staticFile);
                 // Final call
                 server.close();
             });            

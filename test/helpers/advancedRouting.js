@@ -2,6 +2,8 @@ const https = require('https');
 // XML2JSON
 const xml2js = require('xml2js');
 
+const parseRates = require('../../demo/dataParse/parseRates.js')
+
 const extensiveRoutes = {
     fetchDataExternalSource: function(cb) {
         const url = "https://data.norges-bank.no/api/data/EXR?lastNObservations=1";
@@ -15,14 +17,17 @@ const extensiveRoutes = {
                   
                 //console.log("rawData ",rawData)
                 xml2js.parseString(rawData, function (err, result) {
-                    console.dir(result);
                     if(err) {
-                        
+                        console.error('e',err)
+                        cb(err,null)                        
                     } else {
-                        console.log(result)
-                        let parsedData = JSON.stringify(result);
+                        // Parsed currency rates
+                        const rates = result["message:StructureSpecificData"]['message:DataSet'][0].Series;
+                        const parsedRates = parseRates.getCurrencyPairs(rates);
+                        //console.log('parsedRates ',parsedRates);
+                        const stringifiedData = JSON.stringify(parsedRates);
                         cb(null,{
-                            data: parsedData,
+                            data: stringifiedData,
                             statusCode: statusCode
                         });
                     }

@@ -95,6 +95,7 @@ let DirectionRoutes = [
 ]
 
 const DirectionRouter = new Direction(DirectionRoutes);
+DirectionRouter.setStaticFolder('demo/static');
 
 const server = http.createServer((req,res) => {
     DirectionRouter.handleRequests(req,res)
